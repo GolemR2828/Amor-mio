@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Para que el gif y los botones estén uno debajo del otro */
+        }
+
+        /* Contenedor principal */
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Título */
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* GIF */
+        .gif-container img {
+            width: 300px; /* Ajusta el tamaño del gif (más grande) */
+            margin-bottom: 20px;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Botón Sí */
+        .btn-yes {
+            background-color: #2ecc71; /* Verde */
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background-color: #27ae60; /* Verde oscuro */
+        }
+
+        /* Botón No */
+        .btn-no {
+            background-color: #e74c3c; /* Rojo */
+            color: white;
+        }
+
+        .btn-no:hover {
+            background-color: #c0392b; /* Rojo oscuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Contenedor del GIF -->
+        <div class="gif-container">
+            <img src="Amor/images/amor.gif" alt="Amor">
+        </div>
+
+        <!-- Título -->
+        <h1>¿Quieres ser mi San Valentín?</h1>
+
+        <!-- Botones -->
+        <button class="btn btn-yes" onclick="redireccionar()">Sí</button>
+        <button class="btn btn-no" onclick="noClicked()">No</button>
+    </div>
+
+    <script>
+        // Función para redireccionar a Google
+        function redireccionar() {
+            window.location.href = "Amor/amor.html";
+        }
+
+
+        // Variables para controlar el tamaño de los botones
+        let noButtonClicked = 0;
+        const btnYes = document.querySelector('.btn-yes');
+        const btnNo = document.querySelector('.btn-no');
+
+        // Función para manejar el clic en el botón "No"
+        function noClicked() {
+            noButtonClicked++; // Aumenta el contador por cada clic
+            // Aumenta el tamaño del botón "Sí"
+            btnYes.style.transform = `scale(${1 + (noButtonClicked * 0.05)})`; // Cada clic aumenta el tamaño un 5%
+
+            // Aplica la transformación de tamaño decreciente al botón "No"
+            btnNo.style.transform = `scale(${1 - (noButtonClicked * 0.05)})`; // Cada clic reduce el tamaño un 5%
+
+            // Impide que el botón "No" se haga infinitamente pequeño
+            if (noButtonClicked >= 10) {
+                btnNo.style.display = 'none'; // Oculta el botón "No" cuando llegue al tamaño mínimo
+            }
+        }
+    </script>
+</body>
+</html>
